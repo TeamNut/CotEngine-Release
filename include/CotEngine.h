@@ -10,7 +10,13 @@
 #include "component/CotBoxCollider.h"
 #include "component/CotCircleCollider.h"
 
-#include "input/CotInput.h"
 #include "math/CotMath.h"
+#include "input/CotInput.h"
 
-#include "editor/CotEditorAttribute.h"
+namespace Cot
+{
+	inline const char* GetVersion()
+	{
+		return "CotEngine v1.0";
+	}
+}

@@ -1,11 +1,7 @@
 #pragma once
 
-#include "base/CotRule.h"
-#include "math/CotVec2.h"
 #include "CotKeyCode.h"
-#include <queue>
-#include <unordered_map>
-
+#include "math/CotVec2.h"
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 
@@ -14,42 +10,36 @@ namespace Cot
 	class COT_API InputDevice final
 	{
 	private:
-		bool _keyState[(uint)KeyCode::KEYBOARD_END];
-		bool _keyStayState[(uint)KeyCode::KEYBOARD_END];
-		std::queue<KeyCode> _keyDownQueue;
-		std::queue<KeyCode> _keyUpQueue;
-
-		bool _mouseState[(uint)MouseButton::MOUSE_END];
-		std::queue<MouseButton> _mouseDownQueue;
-		std::queue<MouseButton> _mouseUpQueue;
-
-		std::unordered_map<uchar, KeyCode>		_keySwaper;
 		HWND _wnd;
+		bool _keyDownState[(uint)KeyCode::KEYBOARD_END];
+		bool _keyStayState[(uint)KeyCode::KEYBOARD_END];
+		bool _keyUpState[(uint)KeyCode::KEYBOARD_END];
 
-		KeyCode ToKeyCode(uint key) { return _keySwaper[key]; }
+		bool _mouseDownState[(uint)MouseButton::MOUSE_END];
+		bool _mouseStayState[(uint)MouseButton::MOUSE_END];
+		bool _mouseUpState[(uint)MouseButton::MOUSE_END];
 
 	public:
-		InputDevice() = delete;
 		InputDevice(HWND wnd);
 		~InputDevice();
 
-		void CreateKeyCodeTable();
-		Vec2 GetMousePosition();
-
 		bool IsKeyDown(KeyCode code);
-		bool IsKeyUp(KeyCode code);
 		bool IsKeyStay(KeyCode code);
-
-		bool IsMouseDown(MouseButton code);
-		bool IsMouseUp(MouseButton code);
-		bool IsMouseStay(MouseButton code);
+		bool IsKeyUp(KeyCode code);
 
 		void UpdateKeyDown(uint key);
 		void UpdateKeyUp(uint key);
 
+		bool IsMouseDown(MouseButton button);
+		bool IsMouseStay(MouseButton button);
+		bool IsMouseUp(MouseButton button);
+
+		Vec2 GetMousePosition();
+
 		void UpdateMouseDown(MouseButton button);
 		void UpdateMouseUp(MouseButton button);
-		void Clear();
+
+		void Poll();
 
 	};
 }
