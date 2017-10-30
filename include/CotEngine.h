@@ -14,6 +14,9 @@
 #include "math/CotMath.h"
 #include "input/CotInput.h"
 
+#include "container/CotVectorMap.hpp"
+#include "container/CotQueue.hpp"
+
 namespace Cot
 {
 	inline const char* GetVersion()
