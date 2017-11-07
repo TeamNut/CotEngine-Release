@@ -11,6 +11,7 @@
 #include "component/CotAudioSource.h"
 #include "component/CotBoxCollider.h"
 #include "component/CotCircleCollider.h"
+#include "component/CotButton.h"
 
 #include "math/CotMath.h"
 #include "input/CotInput.h"
@@ -22,6 +23,6 @@ namespace Cot
 {
 	COT_API inline const char* GetVersion()
 	{
-		return "CotEngine v1.4.1";
+		return "CotEngine v1.4.2";
 	}
 }

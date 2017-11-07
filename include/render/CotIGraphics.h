@@ -16,9 +16,11 @@ namespace Cot
 		std::vector<IRenderer*> _renderers;
 		Color		_clearColor;
 		bool		_fullScreen;
+		uint		_width;
+		uint		_height;
 
 	public:
-		virtual bool Init(HWND wnd) = 0;
+		virtual bool Init(HWND wnd, uint width, uint height, bool fullScreen) = 0;
 		virtual void Destroy() = 0;
 
 		virtual void AddRenderer(IRenderer* renderer) = 0;
@@ -26,6 +28,11 @@ namespace Cot
 
 		void SetClearColor(const Color& color) { _clearColor = color; }
 		Color GetClearColor() { return _clearColor; }
+
+		virtual void SetFullScreen(bool fullScreen) = 0;
+		bool IsFullScreen() { return _fullScreen; }
+
+		virtual void Reset() = 0;
 
 	};
 }
